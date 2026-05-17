@@ -1,7 +1,9 @@
 % template.tex — SHNU-Exam 模板文件
 % 编译：xelatex template.tex（两次）
 
-\documentclass[answerspace=14]{shnu-exam}
+\documentclass[answerspace=14,
+%solution=true
+]{shnu-exam}
 
 \examtitle{<科目名称>}
 \examtype{<A/B卷>}
@@ -26,21 +28,25 @@
 
 \section{三、计算题（本题<X>分）}
 
-\problem[lines=12]{<题干>}
+\problem[lines=12]{<题干>
+\par \answer{<解答过程>}}
 
 \section[newpage]{四、计算题（本题<X>分）}
 
 \problem[lines=16]{<题干>
 \par (1) <小问一>；
-\par (2) <小问二>。}
+\par (2) <小问二>。
+\par \answer{<解答过程>}}
 
 \section[newpage]{五、证明题（本题<X>分）}
 
-\problem[space=8cm]{<题干>}
+\problem[space=8cm]{<题干>
+\par \answer{<解答过程>}}
 
 \section[newpage]{六、综合题（本题<X>分）}
 
-\problem[lines=20]{<题干>}
-\answer{<解答过程>}
+\problem[lines=20]{<题干>
+\par \answer{<解答过程>}}
+
 
 \end{document}
