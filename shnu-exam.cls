@@ -423,4 +423,11 @@
   \fi
 }
 
+% ===== 答案显示 =====
+\NewDocumentCommand{\answer}{+m}{%
+  \ifshnu@solution
+    \par\noindent{\heiti 答案：}#1\par
+  \fi
+}
+
 \endinput
