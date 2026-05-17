@@ -444,7 +444,7 @@
 % solution 模式下按类型显示答案
 \newcommand{\shnu@answer@show}[2]{%
   \IfStrEq{#1}{choice}{%
-    ~({\color{red}#2})%
+    ~\mbox{(\textcolor{red}{#2})}%
   }{%
     \IfStrEq{#1}{blank}{%
       ~\underline{\textcolor{red}{#2}}%
@@ -458,7 +458,7 @@
 \newdimen\shnu@ans@wd
 \newcommand{\shnu@answer@blank}[2]{%
   \IfStrEq{#1}{choice}{%
-    ~(\hspace{4em})%
+    ~\mbox{(\hspace{4em})}%
   }{%
     \IfStrEq{#1}{blank}{%
       \settowidth{\shnu@ans@wd}{#2}%
