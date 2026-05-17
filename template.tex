@@ -1,10 +1,7 @@
 % template.tex — SHNU-Exam 模板文件
 % 编译：xelatex template.tex（两次）
 
-\documentclass[
-  answerspace=14,   % 大题默认答题空行数
-  % solution=true,  % 取消注释以显示答案
-]{shnu-exam}
+\documentclass[answerspace=14]{shnu-exam}
 
 \examtitle{<科目名称>}
 \examtype{<A/B卷>}
@@ -15,7 +12,6 @@
 \begin{document}
 \maketitle
 
-%% ===== 一、选择题 =====
 \section{一、选择题（每小题<X>分，共<X>分）}
 
 \question <题干>\answer[choice]{<选项>}.
@@ -24,29 +20,24 @@
 \choice{<选项C>}
 \choice{<选项D>}
 
-%% ===== 二、填空题 =====
 \section{二、填空题（每空<X>分，共<X>分）}
 
 \question <题干>\answer[blank]{<答案>}.
 
-%% ===== 三、计算题 =====
 \section{三、计算题（本题<X>分）}
 
 \problem[lines=12]{<题干>}
 
-%% ===== 四、计算题（新页开始）=====
 \section[newpage]{四、计算题（本题<X>分）}
 
 \problem[lines=16]{<题干>
 \par (1) <小问一>；
 \par (2) <小问二>。}
 
-%% ===== 五、证明题（新页开始）=====
 \section[newpage]{五、证明题（本题<X>分）}
 
 \problem[space=8cm]{<题干>}
 
-%% ===== 六、综合题（新页开始）=====
 \section[newpage]{六、综合题（本题<X>分）}
 
 \problem[lines=20]{<题干>}
