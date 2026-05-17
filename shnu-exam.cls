@@ -116,12 +116,11 @@
   \vskip 7.8pt
   {\songti\fontsize{10.5pt}{20pt}\selectfont
    \hspace*{10.5pt}%
-   \underline{\hspace{4em}}专业%
-   \underline{\hspace{2em}}\hskip 0.3em
-   本科\underline{\hspace{2em}}\hskip 0.3em
-   级\underline{\hspace{2em}}\hskip 0.3em
-   班\underline{\hspace{2em}}\hfill
-   姓名\underline{\hspace{5em}}\hskip 0.3em
+   \underline{\hspace{8em}}专业\hskip 1em
+   本科\underline{\hspace{3em}}\hskip 1em
+   级\underline{\hspace{3em}}\hskip 1em
+   班\hfill
+   姓名\underline{\hspace{5em}}\hskip 0.5em
    学号\underline{\hspace{4em}}\par}
   \vskip 7.8pt
   \endgroup
@@ -145,9 +144,9 @@
   \ifcase#1\or 一\or 二\or 三\or 四\or 五\or 六\or 七\or 八\or 九\or 十\fi
 }
 
-% 辅助宏：向得分表添加一列
+% 辅助宏：向得分表添加一列（#1 为中文字号）
 \def\shnu@addcol#1{%
-  \expandafter\gdef\expandafter\@tmpcols\expandafter{\@tmpcols >{\centering\arraybackslash}p{1.8cm}|}%
+  \expandafter\gdef\expandafter\@tmpcols\expandafter{\@tmpcols | >{\centering\arraybackslash}X}%
   \expandafter\gdef\expandafter\@tmpheader\expandafter{\@tmpheader & \shnu@cnum{#1}}%
   \expandafter\gdef\expandafter\@tmprow\expandafter{\@tmprow & }%
 }
@@ -161,13 +160,13 @@
   \fi
 }
 
-% 得分表默认值（列内容居中）
-\def\shnu@score@cols{|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|}
+% 得分表默认值（X 列自适应 + 居中 + 竖线）
+\def\shnu@score@cols{|>{\centering\arraybackslash}X|>{\centering\arraybackslash}X|}
 \def\shnu@score@header{题号 & 总分}
 \def\shnu@score@row{得分 & }
 
 % 重定义 \section：自动计数 + 写入 .aux + 题号重置
-% 得分框用两列表格（第一列"得分"，第二列空白），题头紧跟其后同行
+% 得分框：两列等宽表格；题头小四宋体加粗同行显示
 \let\shnu@orig@section\section
 \RenewDocumentCommand{\section}{s m}{%
   \setcounter{shnu@question}{0}%
@@ -178,14 +177,14 @@
   \par\vspace{12pt}
   \noindent
   \ifshnu@showscore
-    \begin{tabular}{|c|c|}
+    \begin{tabular}{|p{1.8cm}|p{1.8cm}|}
       \hline
-      得分 & \\[8pt]
+      \centering 得分 & \\[8pt]
       \hline
     \end{tabular}%
     \hspace{1em}%
   \fi
-  {\songtiBold\fontsize{15pt}{18pt}\selectfont\raggedright #2}%
+  {\songtiBold\fontsize{12pt}{16pt}\selectfont\raggedright #2}%
   \par\vspace{8pt}
 }
 
@@ -202,13 +201,13 @@
 % 在 \AtBeginDocument 中根据 .aux 预构建得分表
 \AtBeginDocument{%
   \ifx\shnu@section@list\empty\else
-    \def\@tmpcols{|>{\centering\arraybackslash}p{2cm}}
+    \def\@tmpcols{|>{\centering\arraybackslash}X}
     \def\@tmpheader{题号}
     \def\@tmprow{得分}
     \@for\@n:=\shnu@section@list\do{%
       \expandafter\shnu@addcol\expandafter{\@n}%
     }%
-    \expandafter\gdef\expandafter\@tmpcols\expandafter{\@tmpcols >{\centering\arraybackslash}p{2cm}|}%
+    \expandafter\gdef\expandafter\@tmpcols\expandafter{\@tmpcols | >{\centering\arraybackslash}X|}%
     \expandafter\gdef\expandafter\@tmpheader\expandafter{\@tmpheader & 总分}%
     \expandafter\gdef\expandafter\@tmprow\expandafter{\@tmprow & }%
     \global\let\shnu@score@cols\@tmpcols
@@ -217,13 +216,13 @@
   \fi
 }
 
-% ===== 得分表 =====
+% ===== 得分表（tabularx 自适应宽度）=====
 \newcommand{\shnu@scoretable}{%
   \vskip 7.8pt
   {\songti\fontsize{10.5pt}{10.5pt}\selectfont
    \centering
    \protected@xdef\@tempa{%
-     \noexpand\begin{tabular}{\shnu@score@cols}%
+     \noexpand\begin{tabularx}{\textwidth}{\shnu@score@cols}%
        \noexpand\hline
        \shnu@score@header
        \noexpand\\
@@ -231,7 +230,7 @@
        \shnu@score@row
        \noexpand\\
        \noexpand\hline
-     \noexpand\end{tabular}%
+     \noexpand\end{tabularx}%
    }%
    \@tempa\par}
   \vskip 7.8pt
