@@ -31,6 +31,7 @@
 \RequirePackage{zhnumber}
 \RequirePackage{pgfkeys}
 \RequirePackage{amsmath}
+\RequirePackage{newtxmath}
 
 % ===== 字体配置 =====
 % 宋体（常规）
@@ -60,7 +61,7 @@
 % 西文无衬线
 \setsansfont{Arial}
 
-% 数学字体：使用 LaTeX 默认 Computer Modern（不加载 unicode-math）
+% 数学字体：newtxmath（Times 风格，与西文正文 Times New Roman 匹配）
 
 % ===== 页面布局 =====
 \geometry{
