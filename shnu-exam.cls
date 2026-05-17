@@ -178,9 +178,9 @@
   \par\vspace{12pt}
   \noindent
   \ifshnu@showscore
-    \begin{tabular}{|p{1.1cm}|p{1.1cm}|}
+    \begin{tabular}{|p{0.75cm}|p{0.75cm}|}
       \hline
-      \centering 得分 & \\[6pt]
+      \centering 得分 & \\[4pt]
       \hline
     \end{tabular}%
     \hspace{1em}%
@@ -265,7 +265,7 @@
 
 % ===== 正文行距 =====
 \AtBeginDocument{%
-  \setstretch{1.45}%
+  \setstretch{1.55}%
   \zihao{5}%
 }
 
