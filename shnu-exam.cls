@@ -259,10 +259,10 @@
 
 \NewDocumentCommand{\question}{}{%
   \stepcounter{shnu@question}%
-  \par\vspace{4pt}% 与上题的额外间距
+  \par\vspace{4pt}%
+  \everypar{\hangindent=\shnu@question@indent\hangafter=1}%
+  \parindent=\shnu@question@indent
   \noindent
-  \hangindent=\shnu@question@indent
-  \hangafter=1
   \makebox[\shnu@question@indent][l]{{\songti\fontsize{10.5pt}{15.75pt}\selectfont\theshnu@question.}\hspace{0.5em}}%
 }
 
@@ -270,6 +270,8 @@
 \AtBeginDocument{%
   \setstretch{1.55}%
   \zihao{5}%
+  \relpenalty=10000    % 禁止行内公式在关系符处换行
+  \binoppenalty=10000  % 禁止行内公式在二元运算符处换行
 }
 
 % ===== 选择题选项 =====
@@ -405,9 +407,12 @@
   space/.store in = \shnu@tmp@space,
 }
 
-\NewDocumentCommand{\problem}{O{} m}{%
+\NewDocumentCommand{\problem}{O{} +m}{%
   \par
+  \begingroup
+  \parindent=0pt
   \noindent #2\par
+  \endgroup
   \def\shnu@tmp@lines{\shnu@answerspace}%
   \def\shnu@tmp@space{}%
   \pgfkeys{/shnu, #1}%
