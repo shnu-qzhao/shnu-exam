@@ -30,6 +30,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{zhnumber}
 \RequirePackage{pgfkeys}
+\RequirePackage{amsmath}
 
 % ===== 字体配置 =====
 % 宋体（常规）
@@ -103,7 +104,7 @@
    \centerline{上海师范大学标准试卷}\par}
   % P1: 学年学期 — 宋体 10.5pt，行距 18pt
   {\songti\fontsize{10.5pt}{18pt}\selectfont
-   \centerline{\shnu@semester\hskip 2em 考试日期\hskip 2em \shnu@examdate}\par}
+   \centerline{\shnu@semester\hskip 1em 考试日期\hskip 1em \shnu@examdate}\par}
   % P2: 考试时间 — 宋体 10.5pt，行距 18pt，段后 7.8pt
   {\songti\fontsize{10.5pt}{18pt}\selectfont
    \centerline{（考试时间：\shnu@examduration~分钟）}\par}
@@ -115,12 +116,13 @@
   \vskip 7.8pt
   {\songti\fontsize{10.5pt}{20pt}\selectfont
    \hspace*{10.5pt}%
-   专业\underline{\hspace{2.5em}}\hskip 0.5em
-   本科\underline{\hspace{2.5em}}\hskip 0.5em
-   级\underline{\hspace{2.5em}}\hskip 0.5em
+   \underline{\hspace{4em}}专业%
+   \underline{\hspace{2em}}\hskip 0.3em
+   本科\underline{\hspace{2em}}\hskip 0.3em
+   级\underline{\hspace{2em}}\hskip 0.3em
    班\underline{\hspace{2em}}\hfill
-   姓名\underline{\hspace{6em}}\hskip 0.5em
-   学号\underline{\hspace{5em}}\par}
+   姓名\underline{\hspace{5em}}\hskip 0.3em
+   学号\underline{\hspace{4em}}\par}
   \vskip 7.8pt
   \endgroup
 }
@@ -145,7 +147,7 @@
 
 % 辅助宏：向得分表添加一列
 \def\shnu@addcol#1{%
-  \expandafter\gdef\expandafter\@tmpcols\expandafter{\@tmpcols p{1.2cm}|}%
+  \expandafter\gdef\expandafter\@tmpcols\expandafter{\@tmpcols >{\centering\arraybackslash}p{1.8cm}|}%
   \expandafter\gdef\expandafter\@tmpheader\expandafter{\@tmpheader & \shnu@cnum{#1}}%
   \expandafter\gdef\expandafter\@tmprow\expandafter{\@tmprow & }%
 }
@@ -159,13 +161,13 @@
   \fi
 }
 
-% 得分表默认值
-\def\shnu@score@cols{|p{2cm}|p{2cm}|}
+% 得分表默认值（列内容居中）
+\def\shnu@score@cols{|>{\centering\arraybackslash}p{2cm}|>{\centering\arraybackslash}p{2cm}|}
 \def\shnu@score@header{题号 & 总分}
 \def\shnu@score@row{得分 & }
 
 % 重定义 \section：自动计数 + 写入 .aux + 题号重置
-% 得分框与标题在同一行，使用 tabular 格式
+% 得分框用两列表格（第一列"得分"，第二列空白），题头紧跟其后同行
 \let\shnu@orig@section\section
 \RenewDocumentCommand{\section}{s m}{%
   \setcounter{shnu@question}{0}%
@@ -176,13 +178,14 @@
   \par\vspace{12pt}
   \noindent
   \ifshnu@showscore
-    \begin{tabular}{@{}p{\dimexpr\linewidth-4.3cm\relax}@{}p{4.3cm}@{}}
-      {\songtiBold\fontsize{15pt}{18pt}\selectfont\raggedright #2} &
-      {\songti\fontsize{10.5pt}{10.5pt}\selectfont 得分\rule{2.5cm}{0.4pt}}
+    \begin{tabular}{|c|c|}
+      \hline
+      得分 & \\[8pt]
+      \hline
     \end{tabular}%
-  \else
-    {\songtiBold\fontsize{15pt}{18pt}\selectfont\raggedright #2}%
+    \hspace{1em}%
   \fi
+  {\songtiBold\fontsize{15pt}{18pt}\selectfont\raggedright #2}%
   \par\vspace{8pt}
 }
 
@@ -199,13 +202,13 @@
 % 在 \AtBeginDocument 中根据 .aux 预构建得分表
 \AtBeginDocument{%
   \ifx\shnu@section@list\empty\else
-    \def\@tmpcols{|p{2cm}}
+    \def\@tmpcols{|>{\centering\arraybackslash}p{2cm}}
     \def\@tmpheader{题号}
     \def\@tmprow{得分}
     \@for\@n:=\shnu@section@list\do{%
       \expandafter\shnu@addcol\expandafter{\@n}%
     }%
-    \expandafter\gdef\expandafter\@tmpcols\expandafter{\@tmpcols p{2cm}|}%
+    \expandafter\gdef\expandafter\@tmpcols\expandafter{\@tmpcols >{\centering\arraybackslash}p{2cm}|}%
     \expandafter\gdef\expandafter\@tmpheader\expandafter{\@tmpheader & 总分}%
     \expandafter\gdef\expandafter\@tmprow\expandafter{\@tmprow & }%
     \global\let\shnu@score@cols\@tmpcols
@@ -253,7 +256,7 @@
 
 \NewDocumentCommand{\question}{}{%
   \stepcounter{shnu@question}%
-  \par
+  \par\vspace{4pt}% 与上题的额外间距
   \noindent
   \hangindent=\shnu@question@indent
   \hangafter=1
