@@ -102,20 +102,20 @@
   % P0: 标题 — 黑体加粗 22pt，居中
   {\heitiBold\fontsize{22pt}{22pt}\selectfont
    \centerline{上海师范大学标准试卷}\par}
-  % P1: 学年学期 — 宋体 10.5pt，行距 18pt
-  {\songti\fontsize{10.5pt}{18pt}\selectfont
+  % P1: 学年学期 — 宋体 10.5pt，行距 15pt
+  {\songti\fontsize{10.5pt}{15pt}\selectfont
    \centerline{\shnu@semester\hskip 1em 考试日期\hskip 1em \shnu@examdate}\par}
-  % P2: 考试时间 — 宋体 10.5pt，行距 18pt，段后 7.8pt
-  {\songti\fontsize{10.5pt}{18pt}\selectfont
+  % P2: 考试时间 — 宋体 10.5pt，行距 15pt，段后 4pt
+  {\songti\fontsize{10.5pt}{15pt}\selectfont
    \centerline{（考试时间：\shnu@examduration~分钟）}\par}
-  \vskip 7.8pt
-  % P3: 科目 — 宋体加粗 15pt，行距 18pt
-  {\songtiBold\fontsize{15pt}{18pt}\selectfont
+  \vskip 4pt
+  % P3: 科目 — 宋体加粗 15pt，行距 16pt
+  {\songtiBold\fontsize{15pt}{16pt}\selectfont
    \centerline{科目：\shnu@examtitle（\shnu@examtype）}\par}
-  % P4: 学生信息 — 宋体 10.5pt，行距 20pt，段前 7.8pt，段后 7.8pt
+  % P4: 学生信息 — 宋体 10.5pt，行距 16pt，段前 4pt，段后 4pt
   % 用 \rule 替代 \underline 消除字符与下划线间的间隙
-  \vskip 7.8pt
-  {\songti\fontsize{10.5pt}{20pt}\selectfont
+  \vskip 4pt
+  {\songti\fontsize{10.5pt}{16pt}\selectfont
    \noindent
    \rule[-2pt]{8em}{0.4pt}专业%
    \hskip 0.5em 本科\rule[-2pt]{3.5em}{0.4pt}%
@@ -123,17 +123,17 @@
    \hskip 0.5em 班\hfill
    姓名\rule[-2pt]{4.5em}{0.4pt}%
    \hskip 0.3em 学号\rule[-2pt]{8em}{0.4pt}\par}
-  \vskip 7.8pt
+  \vskip 4pt
   \endgroup
 }
 
 % ===== 诚信承诺行 =====
 \newcommand{\shnu@pledge}{%
-  \vskip 23.4pt
+  \vskip 14pt
   {\heiti\fontsize{12pt}{12pt}\selectfont
    \centerline{我承诺，遵守《上海师范大学考场规则》，诚信考试。%
    \hskip 1em 签名：\rule{6em}{0.4pt}}\par}
-  \vskip 15.6pt
+  \vskip 10pt
 }
 
 % ===== 大题计数器（使用 .aux 文件）=====
@@ -219,7 +219,7 @@
 
 % ===== 得分表（tabularx 自适应宽度）=====
 \newcommand{\shnu@scoretable}{%
-  \vskip 7.8pt
+  \vskip 6pt
   {\songti\fontsize{10.5pt}{10.5pt}\selectfont
    \centering
    \protected@xdef\@tempa{%
@@ -234,7 +234,7 @@
      \noexpand\end{tabularx}%
    }%
    \@tempa\par}
-  \vskip 7.8pt
+  \vskip 6pt
 }
 
 % ===== 重定义 \maketitle =====
