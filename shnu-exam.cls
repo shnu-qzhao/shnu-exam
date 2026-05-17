@@ -174,6 +174,7 @@
 % 得分框：两列等宽表格；题头小四宋体加粗同行显示
 \let\shnu@orig@section\section
 \RenewDocumentCommand{\section}{s o m}{%
+  \everypar{}% 清除悬挂缩进
   \IfValueT{#2}{\newpage}%
   \setcounter{shnu@question}{0}%
   \stepcounter{shnu@section@cnt}%
@@ -411,6 +412,7 @@
 
 \NewDocumentCommand{\problem}{O{} +m}{%
   \par
+  \everypar{}% 清除 \question 设置的悬挂缩进
   \begingroup
   \parindent=0pt
   \noindent #2\par
