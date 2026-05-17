@@ -1,9 +1,12 @@
 % example-2026-1-A.tex — 还原 2025-2026 学年第 1 学期概率论与数理统计 A 卷
+% 使用 \answer[choice]{X} / \answer[blank]{答案} 标注每题答案
+% 编译：xelatex example-2026-1-A.tex （两次）
+
 \documentclass[answerspace=14]{shnu-exam}
 
 \examtitle{概率论与数理统计}
 \examtype{A卷}
-\semester{2025$\sim$2026 学年~~第~1~学期}
+\semester{2025 $\sim$ 2026 学年~~第~1~学期}
 \examdate{2026年1月13日}
 \examduration{90}
 
@@ -12,13 +15,13 @@
 
 \section{一、选择题（每小题2分，共16分）}
 
-\question 以下说法中正确的是 (~~~~~~~~~~).
+\question 以下说法中正确的是\answer[choice]{D}.
 \choice{概率为0的事件是不可能事件}
 \choice{相互独立的事件不可能同时发生}
 \choice{泊松分布的样本点数量是无限的}
 \choice{以上均不对}
 
-\question 以下关于指数分布的描述中错误的是 (~~~~~~~~~~).
+\question 以下关于指数分布的描述中错误的是\answer[choice]{D}.
 \choice{指数分布具有无记忆性}
 \choice{指数分布的数学期望与方差可能相同}
 \choice{密度函数为0的点概率为0}
@@ -26,7 +29,7 @@
 
 \question 二维随机变量$(X,Y)$的联合概率密度函数为
 $f(x,y)=\begin{cases}2,&0<x<y<1\text{,}\\0,&\text{其他.}\end{cases}$
-下列结论中正确的是 (~~~~~~~~~~).
+下列结论中正确的是\answer[choice]{D}.
 \choice{$X$与$Y$相互独立}
 \choice{$P\{X+Y<1\}=\frac12$}
 \choice{$P\{X<\frac12,Y<\frac12\}=\frac12$}
@@ -34,31 +37,31 @@ $f(x,y)=\begin{cases}2,&0<x<y<1\text{,}\\0,&\text{其他.}\end{cases}$
 
 \question 设随机变量$X$的概率密度函数为
 $f(x)=\begin{cases}2x,&0<x<1\text{,}\\0,&\text{其他.}\end{cases}$
-下列结论中正确的是 (~~~~~~~~~~).
+下列结论中正确的是\answer[choice]{A}.
 \choice{$E(X)=\frac12$}
 \choice{$E(X^2)=\frac12$}
 \choice{$D(X)=\frac{1}{18}$}
 \choice{$D(X)=\frac{1}{12}$}
 
-\question 设随机变量$X_1,X_2,\dots,X_n$相互独立同分布，且$E(X_i)=\mu$，$D(X_i)=\sigma^2$，$\bar{X}=\frac1n\sum X_i$。当$n$足够大时，下列结论中正确的是 (~~~~~~~~~~).
+\question 设随机变量$X_1,X_2,\dots,X_n$相互独立同分布，且$E(X_i)=\mu$，$D(X_i)=\sigma^2$，$\bar{X}=\frac1n\sum X_i$。当$n$足够大时，下列结论中正确的是\answer[choice]{B}.
 \choice{$\bar{X}$近似服从$N(\mu,\sigma^2)$}
 \choice{$\sqrt{n}(\bar{X}-\mu)$近似服从$N(0,\sigma^2)$}
 \choice{$\bar{X}-\mu$近似服从$N(0,\frac{\sigma^2}{n})$}
 \choice{$\sum X_i$近似服从$N(n\mu,n^2\sigma^2)$}
 
-\question 设随机样本$X_1,X_2,\dots,X_n$来自正态总体$N(\mu,\sigma^2)$，其中$\mu,\sigma^2$均未知。设$\bar{X}=\frac1n\sum X_i$，$S^2=\frac1{n-1}\sum(X_i-\bar{X})^2$。下列统计量中，服从$F$分布的是 (~~~~~~~~~~).
+\question 设随机样本$X_1,X_2,\dots,X_n$来自正态总体$N(\mu,\sigma^2)$，其中$\mu,\sigma^2$均未知。设$\bar{X}=\frac1n\sum X_i$，$S^2=\frac1{n-1}\sum(X_i-\bar{X})^2$。下列统计量中，服从$F$分布的是\answer[choice]{D}.
 \choice{$\frac{(n-1)\bar{X}}{\sigma^2}$}
 \choice{$\frac{\bar{X}-\mu}{S/\sqrt{n}}$}
 \choice{$\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2}$}
 \choice{$\frac{S_1^2}{S_2^2}$}
 
-\question 设随机样本$X_1,X_2,\dots,X_n$来自正态总体$N(\mu,\sigma^2)$，其中$\sigma^2$已知，$\mu$未知。下列关于参数$\mu$的估计量中，既是无偏估计，又具有最小方差的是 (~~~~~~~~~~).
+\question 设随机样本$X_1,X_2,\dots,X_n$来自正态总体$N(\mu,\sigma^2)$，其中$\sigma^2$已知，$\mu$未知。下列关于参数$\mu$的估计量中，既是无偏估计，又具有最小方差的是\answer[choice]{B}.
 \choice{$X_1$}
 \choice{$\bar{X}$}
 \choice{$\frac1n\sum|X_i|$}
 \choice{$\frac{X_1+X_n}{2}$}
 
-\question 已知某工厂生产的零件直径服从正态分布，已知总体方差为$\sigma^2=4$。现从该工厂随机抽取$n=25$个零件，测得样本均值为$\bar{x}=50.7$。现要检验该工厂零件的平均直径是否为50，显著性水平取$\alpha=0.05$，上$0.05$分位点为$1.634$，上$0.025$分位点为$1.96$。设原假设$H_0:\mu=50$，备择假设$H_1:\mu\neq50$，下列结论中正确的是 (~~~~~~~~~~).
+\question 已知某工厂生产的零件直径服从正态分布，已知总体方差为$\sigma^2=4$。现从该工厂随机抽取$n=25$个零件，测得样本均值为$\bar{x}=50.7$。现要检验该工厂零件的平均直径是否为50，显著性水平取$\alpha=0.05$，上$0.05$分位点为$1.634$，上$0.025$分位点为$1.96$。设原假设$H_0:\mu=50$，备择假设$H_1:\mu\neq50$，下列结论中正确的是\answer[choice]{A}.
 \choice{接受原假设$H_0$}
 \choice{拒绝原假设$H_0$}
 \choice{无法进行假设检验}
@@ -66,27 +69,27 @@ $f(x)=\begin{cases}2x,&0<x<1\text{,}\\0,&\text{其他.}\end{cases}$
 
 \section{二、填空题（每空3分，共24分）}
 
-\question 已知$P(A)=0.6$，$P(B)=0.5$，$P(AB)=0.2$。则$P(A\bar{B})=$\fillin.
+\question 已知$P(A)=0.6$，$P(B)=0.5$，$P(AB)=0.2$。则$P(A\bar{B})=$\answer[blank]{0.6}.
 
 \question 设连续型随机变量$X$的概率密度函数为
 $f(x)=\begin{cases}k(2-x),&0<x<2\text{,}\\k(x-2),&2\leq x<4\\0,&\text{其他.}\end{cases}$
-则常数$k$为\fillin.
+\par 则常数$k$为\answer[blank]{1/4}.
 
 \question 设二维随机变量$(X,Y)$的联合概率密度函数为
 $f(x,y)=\begin{cases}2,&0<x<y<1\text{,}\\0,&\text{其他.}\end{cases}$
-则当$0<x<y<1$时，$F(x,y)=$\fillin.
+则当$0<x<y<1$时，$F(x,y)=$\answer[blank]{2x-1}.
 
 \question 设连续型随机变量$X$的概率密度函数为
 $f(x)=\begin{cases}2(1-x),&0<x<1\text{,}\\0,&\text{其他.}\end{cases}$
-记$Y=\min\{X,1-X\}$，则$E(Y)=$\fillin.
+记$Y=\min\{X,1-X\}$，则$E(Y)=$\answer[blank]{1/4}.
 
-\question 设随机变量$X_1,X_2,\dots,X_n$相互独立同分布，且$E(X_i)=\mu$，$D(X_i)=\sigma^2$，根据中心极限定理，当$n$充分大时，随机变量$\frac{X_1+X_2+\cdots+X_n-n\mu}{\sqrt{n}\sigma}$近似服从\fillin 分布.
+\question 设随机变量$X_1,X_2,\dots,X_n$相互独立同分布，且$E(X_i)=\mu$，$D(X_i)=\sigma^2$，根据中心极限定理，当$n$充分大时，随机变量$\frac{X_1+X_2+\cdots+X_n-n\mu}{\sqrt{n}\sigma}$近似服从\answer[blank]{正态}分布.
 
-\question 设随机变量$X_1,X_2,\dots,X_n$相互独立，且都服从正态分布$N(\mu,\sigma^2)$，其中$\mu$已知，$\sigma^2$未知。则统计量$\sum\frac{(X_i-\mu)^2}{\sigma^2}$服从的分布是\fillin.
+\question 设随机变量$X_1,X_2,\dots,X_n$相互独立，且都服从正态分布$N(\mu,\sigma^2)$，其中$\mu$已知，$\sigma^2$未知。则统计量$\sum\frac{(X_i-\mu)^2}{\sigma^2}$服从的分布是\answer[blank]{$\chi^2(n)$}.
 
-\question 设总体$X$服从指数分布，其中参数$\theta$未知。从该总体中抽取容量为$n$的简单随机样本$X_1,X_2,\dots,X_n$，则参数$\theta$的最大似然估计为\fillin.
+\question 设总体$X$服从指数分布，其中参数$\theta$未知。从该总体中抽取容量为$n$的简单随机样本$X_1,X_2,\dots,X_n$，则参数$\theta$的最大似然估计为\answer[blank]{$n/\sum\ln X_i$}.
 
-\question 设对总体均值$\mu$进行假设检验，原假设与备择假设分别为$H_0:\mu=\mu_0$和$H_1:\mu\neq\mu_0$，显著性水平为$\alpha$，则该检验属于\fillin 检验.
+\question 设对总体均值$\mu$进行假设检验，原假设与备择假设分别为$H_0:\mu=\mu_0$和$H_1:\mu\neq\mu_0$，显著性水平为$\alpha$，则该检验属于\answer[blank]{双边}检验.
 
 \section[newpage]{三、计算题（本题10分）}
 
