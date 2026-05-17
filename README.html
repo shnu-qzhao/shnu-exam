@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SHNU-Exam — 上海师范大学考试卷 LaTeX 文档类</title>
+<style>
+  :root {
+    --bg: #fff;
+    --fg: #1a1a1a;
+    --accent: #1a5276;
+    --code-bg: #f4f4f4;
+    --border: #ddd;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.7;
+    color: var(--fg);
+    background: var(--bg);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+  h1 { font-size: 2rem; color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: .4rem; margin-bottom: 1.5rem; }
+  h2 { font-size: 1.4rem; color: var(--accent); margin: 2rem 0 .8rem; }
+  h3 { font-size: 1.1rem; margin: 1.5rem 0 .5rem; }
+  p { margin-bottom: .8rem; }
+  pre { background: var(--code-bg); border: 1px solid var(--border); border-radius: 4px; padding: 1rem; overflow-x: auto; font-size: .88rem; line-height: 1.5; margin-bottom: 1rem; }
+  code { font-family: "Cascadia Code", "Fira Code", "Consolas", monospace; font-size: .88rem; }
+  pre code { background: none; padding: 0; }
+  table { border-collapse: collapse; width: 100%; margin-bottom: 1rem; }
+  th, td { border: 1px solid var(--border); padding: .5rem .8rem; text-align: left; }
+  th { background: #f0f4f8; font-weight: 600; }
+  ul, ol { margin: 0 0 1rem 1.5rem; }
+  li { margin-bottom: .3rem; }
+  .note { background: #eaf2f8; border-left: 4px solid var(--accent); padding: .8rem 1rem; margin-bottom: 1rem; border-radius: 0 4px 4px 0; }
+</style>
+</head>
+<body>
+
+<h1>SHNU-Exam</h1>
+<p>上海师范大学考试卷 LaTeX 文档类。精确还原上海师范大学标准试卷格式，包括字体、字号、行间距、得分表和答题区。</p>
+
+<h2>快速开始</h2>
+
+<pre><code>\documentclass{shnu-exam}
+
+\examtitle{概率论与数理统计}
+\examtype{A卷}
+\semester{2025~2026 学年~~第~1~学期}
+\examdate{2026年1月13日}
+\examduration{90}
+
+\begin{document}
+\maketitle
+
+\section{一、选择题（每小题2分，共16分）}
+
+\question 题干内容...
+\choice{选项A}
+\choice{选项B}
+\choice{选项C}
+\choice{选项D}
+
+\section{二、填空题（每空3分，共24分）}
+
+\question 题干 \fillin
+
+\section{三、计算题（本题10分）}
+
+\problem[lines=15]{题干内容...}
+
+\end{document}</code></pre>
+
+<h2>编译要求</h2>
+<ul>
+  <li><strong>编译器：</strong>XeLaTeX（必须，需要中文字体支持）</li>
+  <li><strong>编译次数：</strong>2 次（首次生成 .aux，第二次得分表完整显示）</li>
+  <li><strong>TeX 发行版：</strong>TeX Live 2024+（含 ctex、fontspec、unicode-math 等宏包）</li>
+</ul>
+
+<h2>系统字体要求</h2>
+<table>
+  <tr><th>字体</th><th>用途</th><th>Windows 自带</th></tr>
+  <tr><td>宋体 SimSun</td><td>正文汉字</td><td>✓</td></tr>
+  <tr><td>黑体 SimHei</td><td>标题、大题标题</td><td>✓</td></tr>
+  <tr><td>Times New Roman</td><td>正文西文、数学</td><td>✓</td></tr>
+  <tr><td>Tex Gyre Termes Math</td><td>数学公式</td><td>TeX Live 自带</td></tr>
+</table>
+
+<h2>文档类选项</h2>
+
+<pre><code>\documentclass[
+  answerspace=10,    % 大题默认答题空行数（默认 10）
+  showscore=true,    % 是否显示得分表和得分栏（默认 true）
+  solution=false,    % 是否显示答案解析（默认 false）
+]{shnu-exam}</code></pre>
+
+<h2>命令参考</h2>
+
+<h3>试卷信息</h3>
+<table>
+  <tr><th>命令</th><th>说明</th></tr>
+  <tr><td><code>\examtitle{科目名称}</code></td><td>科目名称，显示在"科目："后</td></tr>
+  <tr><td><code>\examtype{A卷}</code></td><td>卷型</td></tr>
+  <tr><td><code>\semester{学年~~学期}</code></td><td>学年学期信息</td></tr>
+  <tr><td><code>\examdate{日期}</code></td><td>考试日期</td></tr>
+  <tr><td><code>\examduration{分钟数}</code></td><td>考试时长</td></tr>
+  <tr><td><code>\maketitle</code></td><td>生成试卷头 + 得分表 + 诚信承诺行</td></tr>
+</table>
+
+<h3>大题</h3>
+<table>
+  <tr><th>命令</th><th>说明</th></tr>
+  <tr><td><code>\section{标题}</code></td><td>大题标题（自动计入得分表，自动在标题旁加"得分"栏）</td></tr>
+</table>
+
+<h3>选择题</h3>
+<p>每道题包含题干（<code>\question</code>）和四个选项（<code>\choice</code>）。选项排版根据长度自动选择：</p>
+<ul>
+  <li><strong>4 列一行：</strong>四个选项都较短时，排在一行</li>
+  <li><strong>2×2 网格：</strong>每个选项不超过半行宽，但四个放不下时</li>
+  <li><strong>4 行堆叠：</strong>选项较长时，每个一行</li>
+</ul>
+
+<h3>填空题</h3>
+<table>
+  <tr><th>命令</th><th>说明</th></tr>
+  <tr><td><code>\fillin</code></td><td>生成空白横线（3cm）</td></tr>
+  <tr><td><code>\fillin[答案]</code></td><td>当 <code>solution=true</code> 时显示红色答案</td></tr>
+</table>
+
+<h3>解答题答题区</h3>
+<table>
+  <tr><th>命令</th><th>说明</th></tr>
+  <tr><td><code>\problem{题干}</code></td><td>使用全局默认行数（answerspace 选项）</td></tr>
+  <tr><td><code>\problem[lines=15]{题干}</code></td><td>预留 15 行空白答题线</td></tr>
+  <tr><td><code>\problem[space=6cm]{题干}</code></td><td>预留 6cm 空白区域</td></tr>
+</table>
+
+<h2>格式规格</h2>
+
+<table>
+  <tr><th>元素</th><th>字体</th><th>大小</th><th>行距</th></tr>
+  <tr><td>试卷标题</td><td>黑体</td><td>22pt</td><td>单倍</td></tr>
+  <tr><td>学年学期 / 考试时间</td><td>宋体</td><td>10.5pt</td><td>18pt 固定</td></tr>
+  <tr><td>科目行</td><td>黑体</td><td>15pt</td><td>18pt 固定</td></tr>
+  <tr><td>学生信息行</td><td>宋体</td><td>10.5pt</td><td>20pt 固定</td></tr>
+  <tr><td>诚信承诺行</td><td>黑体</td><td>12pt</td><td>单倍</td></tr>
+  <tr><td>大题标题</td><td>黑体</td><td>15pt</td><td>18pt</td></tr>
+  <tr><td>正文（题目）</td><td>宋体 + Times New Roman</td><td>10.5pt (五号)</td><td>1.5 倍</td></tr>
+</table>
+
+<h3>页面规格</h3>
+<ul>
+  <li>A4 纸 (210mm × 297mm)</li>
+  <li>上下边距 2.54cm，左右边距 3.17cm</li>
+  <li>页眉："第 X 页 / 共 Y 页" 居中，0.4pt 分隔线</li>
+</ul>
+
+<h2>文件清单</h2>
+<table>
+  <tr><th>文件</th><th>说明</th></tr>
+  <tr><td><code>shnu-exam.cls</code></td><td>文档类主体</td></tr>
+  <tr><td><code>example-2026-1-A.tex</code></td><td>完整示例（还原原试卷）</td></tr>
+  <tr><td><code>README.html</code></td><td>使用说明（本文档）</td></tr>
+</table>
+
+<h2>注意事项</h2>
+<div class="note">
+  <strong>编译顺序：</strong>首次编译时得分表仅显示"题号 | 总分"两列（因为 .aux 文件尚未生成）。第二次编译将显示完整的大题列（一、二、三…）。此行为与 LaTeX 目录生成一致。
+</div>
+
+</body>
+</html>
