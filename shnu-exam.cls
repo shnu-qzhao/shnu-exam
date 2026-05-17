@@ -168,9 +168,11 @@
 \def\shnu@score@row{得分 & }
 
 % 重定义 \section：自动计数 + 写入 .aux + 题号重置
+% 可选参数：\section[newpage]{标题} 从新页开始
 % 得分框：两列等宽表格；题头小四宋体加粗同行显示
 \let\shnu@orig@section\section
-\RenewDocumentCommand{\section}{s m}{%
+\RenewDocumentCommand{\section}{s o m}{%
+  \IfValueT{#2}{\newpage}%
   \setcounter{shnu@question}{0}%
   \stepcounter{shnu@section@cnt}%
   \immediate\write\@auxout{%
@@ -186,7 +188,7 @@
     \end{tabular}%
     \hspace{1em}%
   \fi
-  {\songtiBold\fontsize{12pt}{16pt}\selectfont\raggedright #2}%
+  {\songtiBold\fontsize{12pt}{16pt}\selectfont\raggedright #3}%
   \par\vspace{8pt}
 }
 
