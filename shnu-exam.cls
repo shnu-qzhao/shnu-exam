@@ -447,7 +447,7 @@
     ~\mbox{(\textcolor{red}{#2})}%
   }{%
     \IfStrEq{#1}{blank}{%
-      ~\underline{\textcolor{red}{#2}}%
+      ~\mbox{\underline{\textcolor{red}{#2}}}%
     }{%
       \par\noindent{\heiti 答案：}#2\par
     }%
@@ -462,7 +462,7 @@
   }{%
     \IfStrEq{#1}{blank}{%
       \settowidth{\shnu@ans@wd}{#2}%
-      ~\underline{\hspace{\dimexpr\shnu@ans@wd+4em\relax}}%
+      ~\mbox{\underline{\hspace{\dimexpr\shnu@ans@wd+4em\relax}}}%
     }{}%
   }%
 }
