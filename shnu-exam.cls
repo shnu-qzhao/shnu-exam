@@ -164,7 +164,8 @@
 \def\shnu@score@header{题号 & 总分}
 \def\shnu@score@row{得分 & }
 
-% 重定义 \section：自动计数 + 写入 .aux + 题号重置 + score box
+% 重定义 \section：自动计数 + 写入 .aux + 题号重置
+% 得分框与标题在同一行，使用 tabular 格式
 \let\shnu@orig@section\section
 \RenewDocumentCommand{\section}{s m}{%
   \setcounter{shnu@question}{0}%
@@ -172,15 +173,27 @@
   \immediate\write\@auxout{%
     \string\shnu@gather@section{\theshnu@section@cnt}%
   }%
-  % 大题前的得分框
+  \par\vspace{12pt}
+  \noindent
   \ifshnu@showscore
-    \par\vspace{12pt}
-    \noindent{\songti\fontsize{10.5pt}{10.5pt}\selectfont 得分\rule{3cm}{0.4pt}\par}
-    \vspace{6pt}
+    \begin{tabular}{@{}p{\dimexpr\linewidth-4.3cm\relax}@{}p{4.3cm}@{}}
+      {\songtiBold\fontsize{15pt}{18pt}\selectfont\raggedright #2} &
+      {\songti\fontsize{10.5pt}{10.5pt}\selectfont 得分\rule{2.5cm}{0.4pt}}
+    \end{tabular}%
+  \else
+    {\songtiBold\fontsize{15pt}{18pt}\selectfont\raggedright #2}%
   \fi
-  \IfBooleanTF{#1}
-    {\shnu@orig@section*{#2}}
-    {\shnu@orig@section{#2}}%
+  \par\vspace{8pt}
+}
+
+% 移除 ctex 默认 section 格式（由上面手动控制）
+\ctexset{
+  section = {
+    format     = {},
+    beforeskip = {0pt},
+    afterskip  = {0pt},
+    numbering  = false,
+  },
 }
 
 % 在 \AtBeginDocument 中根据 .aux 预构建得分表
@@ -230,21 +243,11 @@
   \shnu@pledge
 }
 
-% ===== section 格式：宋体加粗 15pt =====
-\ctexset{
-  section = {
-    format     = {\songtiBold\fontsize{15pt}{18pt}\selectfont\raggedright},
-    beforeskip = {6pt},
-    afterskip  = {8pt},
-    numbering  = false,
-  },
-}
-
 % ===== 题目编号（悬挂缩进）=====
 \newcounter{shnu@question}
 \setcounter{shnu@question}{0}
 
-% 题目缩进量：让后续行与首行文字对齐
+% 题号盒子宽度
 \newdimen\shnu@question@indent
 \shnu@question@indent=2.5em
 
@@ -252,9 +255,9 @@
   \stepcounter{shnu@question}%
   \par
   \noindent
-  \hangafter=1
   \hangindent=\shnu@question@indent
-  {\songti\fontsize{10.5pt}{15.75pt}\selectfont\theshnu@question.}\hspace{0.5em}%
+  \hangafter=1
+  \makebox[\shnu@question@indent][l]{{\songti\fontsize{10.5pt}{15.75pt}\selectfont\theshnu@question.}\hspace{0.5em}}%
 }
 
 % ===== 正文行距 =====
