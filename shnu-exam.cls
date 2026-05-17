@@ -113,16 +113,16 @@
   {\songtiBold\fontsize{15pt}{18pt}\selectfont
    \centerline{科目：\shnu@examtitle（\shnu@examtype）}\par}
   % P4: 学生信息 — 宋体 10.5pt，行距 20pt，段前 7.8pt，段后 7.8pt
-  % 格式：____专业 本科____级___班 姓名____ 学号_______
+  % 用 \rule 替代 \underline 消除字符与下划线间的间隙
   \vskip 7.8pt
   {\songti\fontsize{10.5pt}{20pt}\selectfont
    \noindent
-   \underline{\hspace{6em}}专业%
-   \hskip 0.8em 本科\underline{\hspace{2.5em}}%
-   \hskip 0.8em 级\underline{\hspace{1.8em}}%
-   \hskip 0.8em 班\hfill
-   姓名\underline{\hspace{3.5em}}%
-   \hskip 0.5em 学号\underline{\hspace{6em}}\par}
+   \rule[-2pt]{8em}{0.4pt}专业%
+   \hskip 0.5em 本科\rule[-2pt]{3.5em}{0.4pt}%
+   \hskip 0.5em 级\rule[-2pt]{2.5em}{0.4pt}%
+   \hskip 0.5em 班\hfill
+   姓名\rule[-2pt]{4.5em}{0.4pt}%
+   \hskip 0.3em 学号\rule[-2pt]{8em}{0.4pt}\par}
   \vskip 7.8pt
   \endgroup
 }
