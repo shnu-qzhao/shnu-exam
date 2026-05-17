@@ -113,15 +113,16 @@
   {\songtiBold\fontsize{15pt}{18pt}\selectfont
    \centerline{科目：\shnu@examtitle（\shnu@examtype）}\par}
   % P4: 学生信息 — 宋体 10.5pt，行距 20pt，段前 7.8pt，段后 7.8pt
+  % 格式：____专业  本科____级___班  姓名____  学号________
   \vskip 7.8pt
   {\songti\fontsize{10.5pt}{20pt}\selectfont
    \hspace*{10.5pt}%
-   \underline{\hspace{8em}}专业\hskip 1em
+   \underline{\hspace{7.5em}}专业\hskip 1em
    本科\underline{\hspace{3em}}\hskip 1em
-   级\underline{\hspace{3em}}\hskip 1em
+   级\underline{\hspace{2em}}\hskip 1em
    班\hfill
-   姓名\underline{\hspace{5em}}\hskip 0.5em
-   学号\underline{\hspace{4em}}\par}
+   姓名\underline{\hspace{4em}}\hskip 0.5em
+   学号\underline{\hspace{7em}}\par}
   \vskip 7.8pt
   \endgroup
 }
