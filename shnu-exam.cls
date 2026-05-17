@@ -32,6 +32,8 @@
 \RequirePackage{pgfkeys}
 \RequirePackage{amsmath}
 \RequirePackage{newtxmath}
+\RequirePackage{xcolor}
+\RequirePackage{xstring}
 
 % ===== 字体配置 =====
 % 宋体（常规）
@@ -424,10 +426,45 @@
 }
 
 % ===== 答案显示 =====
-\NewDocumentCommand{\answer}{+m}{%
+% \answer[choice]{A}   → solution=false: (    )  /  solution=true: (A)
+% \answer[blank]{文本}  → solution=false: 加宽下划线 /  solution=true: 填答案的下划线
+% \answer{文本}         → solution=false: 无显示  /  solution=true: 显示答案段落
+\NewDocumentCommand{\answer}{o +m}{%
   \ifshnu@solution
-    \par\noindent{\heiti 答案：}#1\par
+    \IfNoValueTF{#1}
+      {\par\noindent{\heiti 答案：}#2\par}%      无参：段落答案
+      {\shnu@answer@show{#1}{#2}}%               有参：按类型显示
+  \else
+    \IfNoValueTF{#1}
+      {}%                                         无参 + 非答案模式：不显示
+      {\shnu@answer@blank{#1}{#2}}%               有参 + 非答案模式：显示空白
   \fi
+}
+
+% solution 模式下按类型显示答案
+\newcommand{\shnu@answer@show}[2]{%
+  \IfStrEq{#1}{choice}{%
+    ~({\color{red}#2})%
+  }{%
+    \IfStrEq{#1}{blank}{%
+      ~\underline{\textcolor{red}{#2}}%
+    }{%
+      \par\noindent{\heiti 答案：}#2\par
+    }%
+  }%
+}
+
+% 非 solution 模式下显示答题空白
+\newdimen\shnu@ans@wd
+\newcommand{\shnu@answer@blank}[2]{%
+  \IfStrEq{#1}{choice}{%
+    ~(\hspace{4em})%
+  }{%
+    \IfStrEq{#1}{blank}{%
+      \settowidth{\shnu@ans@wd}{#2}%
+      ~\underline{\hspace{\dimexpr\shnu@ans@wd+4em\relax}}%
+    }{}%
+  }%
 }
 
 \endinput
